@@ -1,4 +1,5 @@
 "use client";
+
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,6 +22,8 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import { StupidButton } from "./StupidButton";
+import { SparklesCore } from "@/components/ui/sparkles";
+
 
 const formSchema = z
   .object({
@@ -78,110 +81,134 @@ export default function Home() {
       };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(handleSubmit)}
-          className="max-w-md w-full flex flex-col gap-4"
-        >
-          <FormField
-            control={form.control}
-            name="emailAddress"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Email address</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Email address"
-                      type="email"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
-          <FormField
-            control={form.control}
-            name="accountType"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Account type</FormLabel>
-                  <Select onValueChange={field.onChange}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select an account type" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="personal">Personal</SelectItem>
-                      <SelectItem value="company">Company</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
-          {accountType === "company" && (
+    <main >
+      <SparklesPreview name="B@B FORM B@B FORM B@B FORM B@B FORM B@B FORM"/>
+      <div className="flex min-h-screen flex-col items-center justify-between p-10">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(handleSubmit)}
+            className="max-w-md w-full flex flex-col gap-4"
+          >
             <FormField
               control={form.control}
-              name="companyName"
+              name="emailAddress"
               render={({ field }) => {
                 return (
                   <FormItem>
-                    <FormLabel>Company name</FormLabel>
+                    <FormLabel>Email address</FormLabel>
                     <FormControl>
-                      <Input placeholder="Company name" {...field} />
+                      <Input
+                        placeholder="Email address"
+                        type="email"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 );
               }}
             />
-          )}
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Password" type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
-          <FormField
-            control={form.control}
-            name="passwordConfirm"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Password confirm</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Password confirm"
-                      type="password"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
-          <Button type="submit" className="w-full">
-            Submit
-          </Button>
-        </form>
-      </Form>
+            <FormField
+              control={form.control}
+              name="accountType"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Account type</FormLabel>
+                    <Select onValueChange={field.onChange}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select an account type" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="personal">Personal</SelectItem>
+                        <SelectItem value="company">Company</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
+            {accountType === "company" && (
+              <FormField
+                control={form.control}
+                name="companyName"
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>Company name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Company name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
+            )}
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Password" type="password" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
+            <FormField
+              control={form.control}
+              name="passwordConfirm"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Password confirm</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Password confirm"
+                        type="password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
+            <Button type="submit" className="w-full">
+              Submit
+            </Button>
+          </form>
+        </Form>
+      </div>
     </main>
+  );
+}
+
+function SparklesPreview({ name }: { name: string }) {
+  return (
+    <div className="h-[40rem] relative w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+      <div className="w-full absolute inset-0 h-screen">
+        <SparklesCore
+          id="tsparticlesfullpage"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={100}
+          className="w-full h-full"
+          particleColor="#FFFFFF"
+        />
+      </div>
+      <h1 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20">
+        {name}
+      </h1>
+    </div>
   );
 }
