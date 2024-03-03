@@ -70,11 +70,11 @@ export default function Home() {
  
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
     console.log(values)
-    // const { toast } = useToast()
-    //     toast({
-    //       title: "Uh oh! Something went wrong.",
-    //       description: "There was a problem with your request.",
-    //     })
+     
+        toast({
+          title: "Here is your Data",
+          description: `Email: ${values.emailAddress}, Account Type: ${values.accountType}, Password: ${values.password}` ,
+        })
       };
 
   return (
@@ -177,11 +177,7 @@ export default function Home() {
               );
             }}
           />
-          <Button type="submit" className="w-full" onClick={() => {
-              toast({
-                description: "Your message has been sent.",
-              })
-            }}>
+          <Button type="submit" className="w-full">
             Submit
           </Button>
         </form>
