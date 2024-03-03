@@ -1,5 +1,6 @@
 "use client";
-
+import { Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,8 +22,15 @@ import {
   Select,
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
-import { StupidButton } from "./StupidButton";
 import { SparklesCore } from "@/components/ui/sparkles";
+import { ThemeProvider } from "@/components/theme-provider"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 
 const formSchema = z
@@ -82,7 +90,7 @@ export default function Home() {
 
   return (
     <main >
-      <SparklesPreview name="B@B FORM B@B FORM B@B FORM B@B FORM B@B FORM"/>
+      <SparklesPreview/>
       <div className="flex min-h-screen flex-col items-center justify-between p-10">
         <Form {...form}>
           <form
@@ -192,9 +200,11 @@ export default function Home() {
   );
 }
 
-function SparklesPreview({ name }: { name: string }) {
+function SparklesPreview() {
   return (
-    <div className="h-[40rem] relative w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+    
+    <div className="h-[20rem] relative w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+      
       <div className="w-full absolute inset-0 h-screen">
         <SparklesCore
           id="tsparticlesfullpage"
@@ -206,9 +216,38 @@ function SparklesPreview({ name }: { name: string }) {
           particleColor="#FFFFFF"
         />
       </div>
-      <h1 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20">
-        {name}
-      </h1>
+      <h1 className="md:text-5xl text-3xl lg:text-5xl font-bold text-center text-white relative z-20"> B@B FORM B@B FORM B@B FORM </h1>
+      <ModeToggle name="Click me to change color modes" />
+      
     </div>
+
   );
+}
+
+
+export function ModeToggle({ name }: { name: string }) {
+  const { setTheme } = useTheme()
+ 
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+      <Button variant="outline" size="icon" className="m-10">
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">{name}</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          System
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
 }
