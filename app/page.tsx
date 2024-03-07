@@ -1,9 +1,15 @@
 "use client";
+
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  TextRevealCard,
+  TextRevealCardDescription,
+  TextRevealCardTitle,
+} from "@/components/ui/text-reveal-card";
 import {
   Form,
   FormControl,
@@ -89,9 +95,9 @@ export default function Home() {
       };
 
   return (
-    <main >
+    <main  >
       <SparklesPreview/>
-      <div className="flex min-h-screen flex-col items-center justify-between p-10">
+      <div className="flex flex-col items-center justify-between p-10">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
@@ -196,6 +202,7 @@ export default function Home() {
           </form>
         </Form>
       </div>
+      <TextRevealCardVeryCool/>
     </main>
   );
 }
@@ -218,7 +225,6 @@ function SparklesPreview() {
       </div>
       <h1 className="md:text-5xl text-3xl lg:text-5xl font-bold text-center text-white relative z-20"> B@B FORM B@B FORM B@B FORM </h1>
       <ModeToggle name="Click me to change color modes" />
-      
     </div>
 
   );
@@ -231,10 +237,10 @@ export function ModeToggle({ name }: { name: string }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-      <Button variant="outline" size="icon" className="m-10">
+        <Button variant="outline" size="icon">
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">{name}</span>
+          <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -251,3 +257,23 @@ export function ModeToggle({ name }: { name: string }) {
     </DropdownMenu>
   )
 }
+
+function TextRevealCardVeryCool() {
+  return (
+    <div className="flex items-center justify-center bg-[#0E0E10] h-[20rem] rounded-2xl w-full">
+      <TextRevealCard
+        text="Best Big Little Duo"
+        revealText="(ง'̀-'́)ง AK SJ (ง•̀o•́)ง"
+      >
+        <TextRevealCardTitle>
+         Best Big Little 
+        </TextRevealCardTitle>
+        <TextRevealCardDescription>
+          YOU ALREADY KNOW WHO IT
+        </TextRevealCardDescription>
+      </TextRevealCard>
+    </div>
+  );
+}
+
+
