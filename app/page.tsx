@@ -224,14 +224,14 @@ function SparklesPreview() {
         />
       </div>
       <h1 className="md:text-5xl text-3xl lg:text-5xl font-bold text-center text-white relative z-20"> B@B FORM B@B FORM B@B FORM </h1>
-      <ModeToggle name="Click me to change color modes" />
+      <ModeToggle />
     </div>
 
   );
 }
 
 
-export function ModeToggle({ name }: { name: string }) {
+export function ModeToggle() {
   const { setTheme } = useTheme()
  
   return (
