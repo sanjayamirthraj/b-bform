@@ -231,7 +231,7 @@ function SparklesPreview() {
 }
 
 
-export function ModeToggle() {
+function ModeToggle() {
   const { setTheme } = useTheme()
  
   return (
